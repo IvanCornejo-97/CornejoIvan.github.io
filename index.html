@@ -99,6 +99,8 @@ code{font:14px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--plate)
 .contact dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 24px;margin:0 0 24px;font-size:17px}
 .contact dt{color:var(--muted)}
 .contact dd{margin:0}
+
+.more{margin:28px 0 0;font-weight:600}
 footer{padding:24px 0 40px;font-size:14px;color:var(--muted)}
 @media(prefers-reduced-motion:no-preference){figure img{transition:transform .25s}figure:hover img{transform:scale(1.01)}}
 </style>
@@ -128,7 +130,7 @@ footer{padding:24px 0 40px;font-size:14px;color:var(--muted)}
     <a class="btn line" href="mailto:official.ivancornejo@gmail.com">Email me</a>
   </div>
  </div>
- <a class="heroimg" href="#dispatch" aria-label="See the Dispatch Route Tracker project"><img src="images/Dispatch_Route_Tracker.png" alt="Dispatch dashboard built in Excel" width="1136" height="791"></a>
+ <a class="heroimg" href="#dispatch" aria-label="See the Dispatch Route Tracker project"><img src="images/Dispatch_Route_Tracker.png" alt="Dispatch Route Tracker built in Excel" width="1136" height="791"></a>
  </div>
 </div>
 
@@ -147,7 +149,7 @@ footer{padding:24px 0 40px;font-size:14px;color:var(--muted)}
       <h2>About</h2>
       <p>I started at an Amazon Delivery Service Partner as a driver and was promoted to dispatcher after 18 months. As a dispatcher I kept 20+ drivers on schedule every day over Voxer and tracked results in Excel.</p>
       <p>I also handle scheduling, invoicing, payments and customer calls at Luna's Appliances in Watsonville. I'm studying Business Administration at Hartnell College.</p>
-      <p>I'm looking for dispatch, logistics, administrative and billing roles in the Salinas Valley and Monterey area.</p>
+      <p>I'm looking for dispatch, logistics, administrative, billing and HR support roles in the Salinas Valley and Monterey area.</p>
     </div>
     <div>
       <div class="job">
@@ -195,8 +197,7 @@ footer{padding:24px 0 40px;font-size:14px;color:var(--muted)}
 <section id="projects">
   <div class="wrap">
     <h2>Projects</h2>
-    <p class="intro">Three working Excel workbooks. Each runs on live formulas, uses sample data and opens with a "How It Works" tab explaining every sheet.</p>
-
+    <p class="intro">Five working Excel workbooks. Each runs on live formulas, uses sample data and opens with a "How It Works" tab explaining every sheet.</p>
     <article class="plate" id="dispatch">
       <p class="num">Project 1</p>
       <h3 class="t">Dispatch Route Tracker</h3>
@@ -218,14 +219,13 @@ footer{padding:24px 0 40px;font-size:14px;color:var(--muted)}
           <h4>Key formulas</h4>
           <div class="fx">
             <div><code>=(I5-H5)*24</code><span>Hours on route (Excel stores time as a fraction of a day)</span></div>
-            <div><code>=IF(I5&lt;=$Q$1,"Yes","No")</code><span>On-time check against an adjustable cutoff</span></div>
-            <div><code>=COUNTIFS(driver,A5,on_time,"Yes")/B5</code><span>On-time rate per driver</span></div>
+            <div><code>=IF(I5&lt;=$Q$1,&quot;Yes&quot;,&quot;No&quot;)</code><span>On-time check against an adjustable cutoff</span></div>
+            <div><code>=COUNTIFS(driver,A5,on_time,&quot;Yes&quot;)/B5</code><span>On-time rate per driver</span></div>
           </div>
           <a class="btn line" href="files/Dispatch_Route_Tracker.xlsx">Download the workbook</a>
         </div>
       </div>
     </article>
-
     <article class="plate" id="invoices">
       <p class="num">Project 2</p>
       <h3 class="t">Invoice &amp; Accounts Receivable Tracker</h3>
@@ -248,13 +248,12 @@ footer{padding:24px 0 40px;font-size:14px;color:var(--muted)}
           <div class="fx">
             <div><code>=IF(G5&gt;0,MAX(0,$N$1-H5),0)</code><span>Days past due, unpaid invoices only</span></div>
             <div><code>=SUMIF(bucket,A9,balance)</code><span>Total balance in each aging bucket</span></div>
-            <div><code>=SUMIFS(amount,date,"&gt;="&amp;A5,date,"&lt;="&amp;B5)</code><span>Monthly totals with EOMONTH</span></div>
+            <div><code>=SUMIFS(amount,date,&quot;&gt;=&quot;&amp;A5,date,&quot;&lt;=&quot;&amp;B5)</code><span>Monthly totals with EOMONTH</span></div>
           </div>
           <a class="btn line" href="files/Invoice_AR_Tracker.xlsx">Download the workbook</a>
         </div>
       </div>
     </article>
-
     <article class="plate" id="payroll">
       <p class="num">Project 3</p>
       <h3 class="t">Payroll Timesheet Calculator</h3>
@@ -276,10 +275,66 @@ footer{padding:24px 0 40px;font-size:14px;color:var(--muted)}
           <h4>Key formulas</h4>
           <div class="fx">
             <div><code>=MAX(0,MIN(G5,$O$2)-$O$1)</code><span>Daily overtime: hours between 8 and 12</span></div>
-            <div><code>=INDEX(rate,MATCH(A6,id,0))</code><span>Looks up each employee's hourly rate</span></div>
+            <div><code>=INDEX(rate,MATCH(A6,id,0))</code><span>Looks up each employee&#x27;s hourly rate</span></div>
             <div><code>=C5-WEEKDAY(C5,3)</code><span>Finds the Monday of each pay week</span></div>
           </div>
           <a class="btn line" href="files/Payroll_Timesheet_Calculator.xlsx">Download the workbook</a>
+        </div>
+      </div>
+    </article>
+    <article class="plate" id="scheduling">
+      <p class="num">Project 4</p>
+      <h3 class="t">Appointment &amp; Scheduling Tracker</h3>
+      <p class="why">A month of bookings for a service business, about 350 appointments. It catches double-bookings automatically and reports no-shows, reschedules and how many hours each person is booked.</p>
+      <div class="grid">
+        <figure>
+          <img src="images/Appointment_Scheduling_Tracker.png" alt="Scheduling summary with KPIs, a staff workload table, a service type table and an hours-booked chart" width="1163" height="482" loading="lazy">
+          <span class="pin" style="left:-13px;top:22%">1</span>
+          <span class="pin" style="left:-13px;top:42%">2</span>
+          <span class="pin" style="left:72%;top:-13px">3</span>
+          <figcaption>Summary tab. Every figure reads the Appointments log.</figcaption>
+        </figure>
+        <div>
+          <ol class="notes">
+            <li><b>Booking KPIs</b>Appointments, completed, no-show rate, reschedules, Spanish-speaking customers and overlaps to fix.</li>
+            <li><b>Staff workload</b>Appointments, hours booked, completions, no-shows and average appointments per day for each person.</li>
+            <li><b>Hours chart</b>Hours booked by staff member, so uneven schedules are easy to rebalance.</li>
+          </ol>
+          <h4>Key formulas</h4>
+          <div class="fx">
+            <div><code>=IF(COUNTIFS(staff,J5,date,B5,start,&quot;&lt;&quot;&amp;F5,end,&quot;&gt;&quot;&amp;D5)&gt;1,&quot;Overlap&quot;,&quot;OK&quot;)</code><span>Flags any booking that overlaps another for the same person</span></div>
+            <div><code>=D5+E5/1440</code><span>End time from start time and minutes</span></div>
+            <div><code>=SUMPRODUCT(1/COUNTIF(dates,dates))</code><span>Counts unique working days</span></div>
+          </div>
+          <a class="btn line" href="files/Appointment_Scheduling_Tracker.xlsx">Download the workbook</a>
+        </div>
+      </div>
+    </article>
+    <article class="plate" id="licenses">
+      <p class="num">Project 5</p>
+      <h3 class="t">License &amp; Certification Tracker</h3>
+      <p class="why">Required licenses and certifications for 40 employees at an agricultural and packing company. It counts down to every expiration and tells HR exactly who needs a renewal reminder.</p>
+      <div class="grid">
+        <figure>
+          <img src="images/License_Certification_Tracker.png" alt="Compliance dashboard with KPIs, status by license type, a stacked status chart and actions by department" width="1139" height="526" loading="lazy">
+          <span class="pin" style="left:-13px;top:20%">1</span>
+          <span class="pin" style="left:-13px;top:36%">2</span>
+          <span class="pin" style="left:-13px;top:74%">3</span>
+          <figcaption>Compliance Dashboard tab. Change the as-of date and every status updates.</figcaption>
+        </figure>
+        <div>
+          <ol class="notes">
+            <li><b>Compliance KPIs</b>Licenses tracked, current, expiring within 60 days, expired and the compliance rate.</li>
+            <li><b>Status by license type</b>CDL, DOT medical card, HACCP, food handler, CPR and pesticide applicator, each split by status, with a chart.</li>
+            <li><b>Action by department</b>How many licenses need action in each department and how many renewals are already submitted.</li>
+          </ol>
+          <h4>Key formulas</h4>
+          <div class="fx">
+            <div><code>=IF(H5&lt;0,&quot;Expired&quot;,IF(H5&lt;=30,&quot;Expires &lt;30 days&quot;,IF(H5&lt;=$P$2,&quot;Expires &lt;60 days&quot;,&quot;Current&quot;)))</code><span>Status from days left and an adjustable warning window</span></div>
+            <div><code>=IFERROR(INDEX(names,MATCH(A5,ids,0)),&quot;Check ID&quot;)</code><span>Pulls each employee&#x27;s name and department</span></div>
+            <div><code>=COUNTIF(days_left,&quot;&gt;=0&quot;)/total</code><span>Compliance rate</span></div>
+          </div>
+          <a class="btn line" href="files/License_Certification_Tracker.xlsx">Download the workbook</a>
         </div>
       </div>
     </article>
